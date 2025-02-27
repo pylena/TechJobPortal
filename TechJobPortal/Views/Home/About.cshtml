@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Welcom";
+}
+
+
+
+<div class="container mt-5">
+    <h1 class="text-center fade-in">@ViewData["Title"]</h1>
+
+    <div class="card shadow-lg p-4 mt-4 ">
+        <div class="card-body">
+            <h4 class="card-title text-primary">Welcome to TechJobPortal </h4>
+            <p class="card-text">
+                TechJobPortal is a modern job listing platform that connects talented professionals with top companies.
+            </p>
+
+            <h5 class="text-success mt-3"> Why Choose TechJobPortal?</h5>
+            <ul class="list-group ">
+                <li class="list-group-item">✔️ Easy job searching & filtering</li>
+                <li class="list-group-item">✔️ Smart job recommendations</li>
+                <li class="list-group-item">✔️ Up-to-date job postings</li>
+                <li class="list-group-item">✔️ Seamless application process</li>
+            </ul>
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Index", "Job")" class="btn btn-primary btn-lg">Explore Jobs Now</a>
+            </div>
+        </div>
+    </div>
+</div>

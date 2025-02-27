@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model TechJobPortal.Models.JobListing
+
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<h2>Job Details</h2>
+
+<div>
+    <p><strong>Title:</strong> @Model.Title</p>
+    <p><strong>Company:</strong> @Model.CompanyName</p>
+    <p><strong>Job Type:</strong> @Model.jobType</p>
+    <p><strong>Location:</strong> @Model.Location</p>
+    <p><strong>Posted Date:</strong> @Model.PostedDate.ToString("MMM dd, yyyy")</p>
+
+</div>
+
+<a asp-action="Index" class="btn btn-primary">Back to List</a>

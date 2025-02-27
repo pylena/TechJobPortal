@@ -1,0 +1,78 @@
+﻿@model List<TechJobPortal.Models.JobListing>
+
+@{
+    ViewData["Title"] = "Job Listings";
+}
+
+<h2>Job Listings</h2>
+
+<!-- Filter & Search Form -->
+<form method="get">
+    <div class="row">
+        <!-- Search Box -->
+        <div class="col-md-4">
+            <label for="searchTerm">Search:</label>
+            <input type="text" id="searchTerm" name="searchTerm" class="form-control" value="@ViewBag.SearchTerm" placeholder="Enter job title or company" />
+        </div>
+
+        <!-- Job Type Filter -->
+        <div class="col-md-4">
+            <label for="jobType">Filter by Job Type:</label>
+            <select id="jobType" name="jobType" class="form-control">
+                <option value="">All</option>
+                @foreach (var jobType in Enum.GetValues(typeof(TechJobPortal.Models.Enum.JobTypes)))
+                {
+                    <option value="@jobType" selected="@(ViewBag.SelectedJobType == jobType.ToString() ? "selected" : null)">
+                        @jobType
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Sorting Dropdown -->
+        <div class="col-md-4">
+            <label for="sortOrder">Sort by Date:</label>
+            <select id="sortOrder" name="sortOrder" class="form-control">
+                <option value="newest" selected="@(ViewBag.SortOrder == "newest" ? "selected" : null)">Newest First</option>
+                <option value="oldest" selected="@(ViewBag.SortOrder == "oldest" ? "selected" : null)">Oldest First</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Reset</a>
+        </div>
+    </div>
+</form>
+
+<!-- Job Listings Table -->
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Job Type</th>
+            <th>Location</th>
+            <th>Posted Date</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.Title</td>
+                <td>@job.CompanyName</td>
+                <td>@job.jobType</td>
+                <td>@job.Location</td>
+                <td>@job.PostedDate.ToString("MMM dd, yyyy")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@job.Id" class="btn btn-info">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
